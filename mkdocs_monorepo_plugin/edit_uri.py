@@ -85,7 +85,7 @@ class EditUrl:
     page_config_file_yaml = self.__get_page_config_file_yaml()
     return bool(page_config_file_yaml.get('repo_url'))
 
-def __is_root(self):
+  def __is_root(self):
     root_config_docs_dir = self.__get_root_docs_dir()
     abs_root_config_file_dir = self.__get_root_config_file_path()
     abs_root_config_docs_dir = path.join(abs_root_config_file_dir, root_config_docs_dir)
