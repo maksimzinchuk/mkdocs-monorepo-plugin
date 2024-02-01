@@ -90,9 +90,10 @@ class EditUrl:
     abs_root_config_file_dir = self.__get_root_config_file_path()
     abs_root_config_docs_dir = path.join(abs_root_config_file_dir, root_config_docs_dir)
 
-    # normalizing abs_src_path was done, but in case code someone change abs_src_path settings, it's safer 
-    import os
-    return os.path.normpath(abs_root_config_docs_dir) in os.path.normpath(self.page.file.abs_src_path)
+    from pathlib import Path
+    root_config_docs_path = Path(abs_root_config_docs_dir)
+    page_path = Path(self.page.file.abs_src_path)
+    return root_config_docs_path.samefile(page_path) or root_config_docs_path in page_path.parents
 
   def build(self):
     if self.__is_root():
